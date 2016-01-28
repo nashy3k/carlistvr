@@ -1,0 +1,71 @@
+<% provide(:title, @listing.id) %>
+<div class="row">
+	<aside class="col-md-4">
+		<section class="user_info">
+			<h1>
+				<%= gravatar_for @user %>
+				<%= @user.name %>
+			</h1>
+		</section>
+		<section="stats">
+			<%= render 'shared/stats' %>
+		</section>	
+	</aside>
+	<div class="col-md-8">
+		<%= render 'users/follow_form' if logged_in? %>
+		<% if @user.listings.any? %>
+			<h3>Listings (<%= @user.listings.count %>)</h3>
+
+		<div class='text-field'>	
+		  Car type: <%= @listing.cartype %>
+		</div>
+
+		<div class='text-field'>	
+		  Model: <%= @listing.model %>
+		</div>
+
+		<div class='text-field'>	
+		  Year: <%= @listing.year %>
+		</div>
+
+		<div class='text-field'>
+			Color: <%= @listing.color %>
+		</div>
+
+		<div class='text-field'>	
+			Price: <%= @listing.price %>
+		</div>	
+
+		<div class='text-field'>
+			Mileage: <%= @listing.mileage %>
+		</div>	
+
+		<div class='text-field'>
+			Sound System: <%= @listing.sound_system %>
+		</div>	
+
+		<div class='text-field'>
+			Tinting: <%= @listing.tinting %>
+		</div>	
+
+		<div class='text-field'>
+			Security lock: <%= @listing.security_lock %>
+		</div>	
+
+		<div class='text-field'>
+			Description: <%= @listing.description %>
+		</div>	
+
+		<div class='text-field'>
+			Picture: <%= image_tag @listing.picture.url if @listing.picture? %>
+		</div>	
+
+		<div class='text-field'>
+			Pic bonnet: <%= image_tag @listing.pic_bonnet.url if @listing.pic_bonnet? %>
+		</div>	
+
+		<div class='text-field'>
+			Pic boot: <%= image_tag @listing.pic_boot.url if @listing.pic_boot? %>
+		</div>	
+		<% end %>	
+</div>			

@@ -1,0 +1,117 @@
+<%= form_for(@listing, html: { multipart: true }) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.text_area :cartype, placeholder: "Car type...." %>
+	</div>
+
+	<div class="field">
+		<%= f.text_area :model, placeholder: "Model..." %>
+	</div>
+
+	<div>
+		<%= select_year(Date.today, field_name: 'year', start_year: 1950, end_year: 2016, prompt: 'Choose year') %>
+	</div>
+
+	<div class="field">
+		<%= f.text_area :color, placeholder: "Color..." %>
+	</div>
+
+	<div class="field">
+		<%= f.text_area :price, placeholder: "Price..." %>
+	</div>
+
+	<div class="field">
+		<%= f.text_area :mileage, placeholder: "Mileage..." %>
+	</div>
+
+	<div class="field">
+		<%= f.text_area :sound_system, placeholder: "Sound system..." %>
+	</div>
+
+	<div class="field">
+		<%= f.text_area :tinting, placeholder: "Tinting..." %>
+	</div>
+
+	<div class="field">
+		<%= f.text_area :security_lock, placeholder: "Security lock..." %>
+	</div>
+
+	<div class="field">
+		<%= f.text_area :description, placeholder: "Description..." %>
+	</div>
+
+	<% if params[:action] == 'new' %>
+
+		<span class="picture"> Picture
+			<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+		</span>	
+
+		<span class="picture"> Bonnet Picture
+			<%= f.file_field :pic_bonnet, accept: 'image/jpeg,image/gif,image/png' %>
+		</span>
+
+		<span class="picture"> Boot Picture
+			<%= f.file_field :pic_boot, accept: 'image/jpeg,image/gif,image/png' %>
+		</span>
+						
+		<%= f.submit "Post", class: "btn btn-primary" %>
+	<% else %>
+		<div class='text-field'>
+			Picture: <%= image_tag @listing.picture.url if @listing.picture? %>
+		</div>
+
+	  <p>
+	    <label>
+	      <%= f.check_box :remove_picture %>
+	      Remove picture
+	    </label>
+	  </p>
+
+		<span class="picture"> Picture
+			<%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+		</span>
+
+		<div class='text-field'>
+			Pic bonnet: <%= image_tag @listing.pic_bonnet.url if @listing.pic_bonnet? %>
+		</div>
+
+	  <p>
+	    <label>
+	      <%= f.check_box :remove_pic_bonnet %>
+	      Remove pic bonnet
+	    </label>
+	  </p>
+
+		<span class="picture"> Bonnet Picture
+			<%= f.file_field :pic_bonnet, accept: 'image/jpeg,image/gif,image/png' %>
+		</span>
+
+		<div class='text-field'>
+			Pic boot: <%= image_tag @listing.pic_boot.url if @listing.pic_boot? %>
+		</div>
+
+	  <p>
+	    <label>
+	      <%= f.check_box :remove_pic_boot %>
+	      Remove pic boot
+	    </label>
+	  </p>
+
+		<span class="picture"> Boot Picture
+			<%= f.file_field :pic_boot, accept: 'image/jpeg,image/gif,image/png' %>
+		</span>
+
+		<%= f.submit "Save changes", class: "btn btn-primary" %>	
+
+	<% end %>	
+
+<% end %>
+
+<script type="text/javascript">
+  $('#listing_picture').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 1) {
+      alert('Maximum file size is 1MB. Please choose a smaller file.');
+    }
+});
+</script>		

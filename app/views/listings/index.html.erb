@@ -1,0 +1,62 @@
+<%= provide(:title, 'All Listings') %>
+<div id='listings' class='index'>
+	<h1> Index Listing </h1>
+
+	<div class="container-fluid">
+		<div class="jumbotron">
+	    <div class="row">
+
+					
+			</div>
+		</div>	
+			<table>
+				<tr>
+					<th>ID </th>
+				  <th>Car Type </th>
+				  <th>Model </th>
+				  <th>Year </th>
+				  <th>Color </th>
+				  <th>Price </th>
+				  <th>Mileage </th>
+				  <th>Sound System </th>
+				  <th>Tinting </th>
+				  <th>Security Lock </th>
+				  <th>Description </th>
+				  <th> </th>
+				</tr>	
+
+				<% @listing.each do |l| %>
+
+				<tr>
+					<td><%= link_to "#{l.id}", listing_path(l) %></td>
+					<td><%= l.cartype %></td>
+					<td><%= l.model %></td>	
+					<td><%= l.year %></td>
+					<td><%= l.color %></td>
+					<td><%= l.price %></td>
+					<td><%= l.mileage %></td>
+					<td><%= l.sound_system %></td>
+					<td><%= l.tinting %></td>
+					<td><%= l.security_lock %></td>
+					<td><%= l.description %></td>
+
+			     <% if l.user_id == current_user.id %>
+			     		<td><%= link_to 'Edit', edit_listing_path(l) %></td>
+				      <td><%= link_to 'Destroy', listing_path(l), 
+											method: :delete, 
+											data: { confirm: 'Are you sure?' } %>
+							</td>
+						<% else %>
+							<td class='listing_ContactNow' data-listingid="<%= l.id %>">
+								<%= button_tag(type: 'button') do %>
+								<%	content_tag(:strong, 'Contact Now!') %>
+								<% end %>
+								
+							</td>
+						<% end %>	
+				</tr>
+
+				<% end %>
+			</table>
+		</div>
+	</div>		

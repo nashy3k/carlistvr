@@ -1,0 +1,5 @@
+		<%= form_for(@listing) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+			<%= render 'shared/listing_form', f: f %>
+				
+		<% end %>
