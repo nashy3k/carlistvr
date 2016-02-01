@@ -54,6 +54,8 @@
 			<%= f.file_field :pic_boot, accept: 'image/jpeg,image/gif,image/png' %>
 		</span>
 						
+		<%= render 'shared/video_form' %>
+						
 		<%= f.submit "Post", class: "btn btn-primary" %>
 	<% else %>
 		<div class='text-field'>
@@ -100,6 +102,8 @@
 		<span class="picture"> Boot Picture
 			<%= f.file_field :pic_boot, accept: 'image/jpeg,image/gif,image/png' %>
 		</span>
+
+		<%= render 'shared/video_form' %>
 
 		<%= f.submit "Save changes", class: "btn btn-primary" %>	
 
